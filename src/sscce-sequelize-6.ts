@@ -38,7 +38,7 @@ export async function run() {
     {
       sequelize,
       modelName: "Foo",
-    },
+    }
   );
 
   // You can use sinon and chai assertions directly in your SSCCE.
@@ -50,7 +50,7 @@ export async function run() {
   console.log(await Foo.create({ name: "TS foo" }));
   expect(await Foo.count()).to.equal(1);
 
-  // This is the bug.
+  // This is the bug. It'll be fixed in `@sequelize/core@7.0.0-alpha.34`.
   // Argument of type 'Literal' is not assignable to parameter of type 'string | { query: string; values: unknown[]; }'
   sequelize.query(sql`SELECT * FROM Foo`);
 }
